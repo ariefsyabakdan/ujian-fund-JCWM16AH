@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>DRAWING TOOLS</h1>
+<br>
+<p>1.Persegi</p>
+<p>2.Segitiga siku2 Rata Kiri</p>
+<p>3.Segitiga Siku2 Rata Kanan</p>
+<br>
+<p>Jenis Bangunan :</p>
+<input type="text" id="jenis_input" placeholder="Masukkan Angka"/>
+<br>
+<p>Ukuran : </p>
+<input type="text" id="ukuran_input" placeholder="Masukkan Angka"/>
+<br>
+<button id="button" onclick="persegitigaan()">LIHAT</button>
+<h1>result</h1>
+<p id="output"></p>
+<script>
+function persegitigaan(){
+    var jenis = parseInt(document.getElementById('jenis_input'))
+    var ukuran = parseInt(document.getElementById('ukuran_input'))
+    switch (true){
+        case 1:
+            let string = "";
+            for (let i = 1; i<= ukuran; i++){
+                for(let j=0;j<ukuran;j++){
+                    string += "*";
+                }
+                string += "\n";
+            }
+            document.getElementById("output").innerHTML = string;
+            break;
+            case 2 : function sikuKiri (ukuran){
+                let string = "";
+                for (let i=1;i<= ukuran; i++){
+                    for (let j=0; j<i; j++){
+                        string += "*";
+                    }
+                    string += "<br>"
+                }
+                document.getElementById("output").innerHTML = string;
+            }
+            break;
+            case 3:arguments
+            function sikuKanan(ukuran){
+                let string = ""
+                for (let i=1; i<=ukuran;i++){
+                    for (let j=0;j<ukuran -i;j++){
+                        string += " "
+                    }
+                    for (let k=0;k<i;k++){
+                        string += "*"
+                    }
+                    string += "<br>"
+                }
+                document.getElementById("output").innerHTML = string
+            }
+            break;
+            default;
+        }
+}
+</script>
+</body>
+</html>

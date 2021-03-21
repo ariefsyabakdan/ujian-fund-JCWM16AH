@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms Users</title>
+    <style>
+      #myTable,
+      th,
+      td {
+        border: 1px solid black;
+        width: 50vw;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>FORM USERS</h2>
+      <input type="text" id="unameId" placeholder="username" />
+      <input type="text" id="mailId" placeholder="email" /> role
+      <select id="roleId">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+    <br />
+    <button type="button" onclick="addUser()">ADD USERS</button>
+    <div class="dataUser">
+      <h2>USERS DATA</h2>
+      <table id="myTable">
+        <thead>
+          <th>No</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+        </thead>
+        <tbody id="list-users"></tbody>
+      </table>
+    </div>
+  </body>
+  <script>
+    data = [];
+    class allUsers {
+      constructor(_username, _email, _roleId) {
+        this.username = _username;
+        this.email = _email;
+        this.roleId = _roleId;
+      }
+    }
+
+    function printData(indexEdit, dataWarga = data) {
+      let htmlElement = dataWarga.map((item, idx) => {
+        if (indexEdit == idx) {
+          return `<tr>
+                    <td>${idx + 1}</td>
+                    <td><input type="text" id="unameId1" placeholder="username" value="${
+                      item.username
+                    }"></td>
+                    <td><input type="text" id="mailId1" placeholder="email" value="${
+                      item.email
+                    }"></td>
+                    <td><select id="roleId1" value="${item.roleId}">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select></td>
+                    <td><button type="SAVE" onclick="saveData(${idx})">EDIT</button><button type="button" onclick="cancelData()">CANCEL</button></td>
+                    </tr>`;
+        } else {
+          return `<tr>
+                    <td>${idx + 1}</td>
+                    <td>${item.username}</td>
+                    <td>${item.email}</td>
+                    <td>${item.roleId}</td>
+                    <td><button type="button" onclick="editData(${idx})">EDIT</button><button type="button" onclick="deleteData(${idx})">DELETE</button></td>
+                    </tr>`;
+        }
+      });
+      document.getElementById("list-users").innerHTML = htmlElement.join("");
+    }
+
+    function addUser() {
+      username = document.getElementById("unameId").value;
+      email = document.getElementById("mailId").value;
+      roleId = document.getElementById("roleId").value;
+      data.push(new allUsers(username, email, roleId));
+      printData(null, data);
+      console.log(data);
+    }
+
+    function editData(index) {
+      printData(index);
+    }
+
+    function saveData(idx) {
+      username = document.getElementById("unameId1").value;
+      email = document.getElementById("mailId1").value;
+      roleId = document.getElementById("roleId1").value;
+      konfirmasi = confirm("Apakah yakin dengan editan ini ?");
+      if (konfirmasi == true) {
+        data.splice(idx, 1);
+        data.push(new allUsers(username, email, roleId));
+        printData();
+      } else {
+        printData();
+      }
+    }
+
+    function cancelData() {
+      printData();
+    }
+
+    function deleteData(idx) {
+      data.splice(idx, 1);
+      printData();
+    }
+
+    printData();
+  </script>
+</html>
