@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <input type="checkbox" id="myCheck" onclick="show()">
-    <label for="myCheck">Prevent This Page from creating additional dialogs</label>
     <script>
-        let arr = [0,7,12,98]
-        let max = 98;
-        let min = 0;
-        function show(){
-            var hasil ;
-            var x = parseInt(prompt("PLEASE ENTER YOUR NUMBER",""))
-            if (x == ""){
-                hasil = "Nomor Harus diisi"}
-                else if (x == "7"){
-                    hasil = alert("good")
-                } else if (x == ("0","12","98")){
-                    hasil = alert("good")
-                } else if (x == ("12","98","0")){
-                    hasil = alert("good")
-                } else if (x == ("0","98","12")){
-                    hasil = alert("good")
-                } else if (x == ("98","12","0")){
-                    hasil = alert("good")
-                } else { 
-                    hasil = alert("undifined")
+        function Panggil() {
+            data = []
+            while (true) {
+                input = parseInt(prompt("Masukkan Angka"))
+                console.log(input)
+                if (isNaN(input)) {
+                    var min = Math.min.apply(null, data),
+                        max = Math.max.apply(null, data);
+                    nilai = console.log(min)
+                    nilai = console.log(max)
+                    alert("yang anda masukkan bukan angka");
+                    break
+                } else {
+                    data.push(input)
                 }
-                return hasil;
             }
-            console.log(show())
+            alert('Min :' + min + ' Max :' + max)
+
+            console.log(data)
+        }
+        Panggil()
     </script>
 </body>
+
 </html>
